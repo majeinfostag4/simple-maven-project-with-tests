@@ -9,5 +9,6 @@ node('master'){
   
   stage('Result'){
     junit '**/target/surefire-reports/TEST-*.xml'
+    archive 'target/*.jar'
   }
 }
