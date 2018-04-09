@@ -1,11 +1,10 @@
 node('master'){
   checkout scm
   
-  def mvnHome
-  
   stage('Build'){
-    mvnHome = tool 'M3'
-    sh '${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package'
+    withMaven(maven: 'M3') {
+      sh 'mvn -Dmaven.test.failure.ignore clean package'
+    }
   }
   
   stage('Result'){
